@@ -20,15 +20,21 @@
     
     //create a UI scroll view to have the size of the window matchin its size.
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:screenRect];
+    [scrollView setPagingEnabled:YES];
     
     [[self window]addSubview:scrollView];
     
     //create the hpynosisView with a frame that is twice the size of the screen.
     CGRect bigRect  = screenRect;
     bigRect.size.width *=2.0;
-    bigRect.size.height *=2.0;
-    HypnosisView *view =[[HypnosisView alloc]initWithFrame:bigRect];
+   // bigRect.size.height *=2.0;
+    //HypnosisView *view =[[HypnosisView alloc]initWithFrame:bigRect];
+    HypnosisView *view =[[HypnosisView alloc]initWithFrame:screenRect];
     
+    //move the rectangle fro the other view to the right, just off the screen.
+    screenRect.origin.x = screenRect.size.width;
+    HypnosisView *anotherView = [[HypnosisView alloc]initWithFrame:screenRect];
+    [scrollView addSubview:anotherView ];
     
     //add the view as a subview of the scrollview instead of the window.
     [scrollView addSubview:view];
