@@ -22,6 +22,15 @@
     //[view setBackgroundColor:[UIColor redColor]];
     [[self window] addSubview:view];
     
+    BOOL success  = [view becomeFirstResponder];
+    if(success)
+    {
+        NSLog(@"HypnosisView became the first responder");
+        
+    }else{
+        NSLog(@"Could not became the first responder");
+    }
+    
     
     //CGRect anotherViewFrame = CGRectMake(29, 30, 50, 50);
     //HypnosisView *anotherView = [[HypnosisView alloc] initWithFrame:anotherViewFrame];

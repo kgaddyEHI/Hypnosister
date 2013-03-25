@@ -8,6 +8,26 @@
 #import "HypnosisView.h"
 
 @implementation HypnosisView
+@synthesize circleColor;
+
+-(BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+-(void)setCircleColor:(UIColor *)clr
+{
+    circleColor  = clr;
+    [self setNeedsDisplay];
+}
+
+-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    NSLog(@"Device started shaking");
+    [self setCircleColor:[UIColor redColor]];
+ 
+}
+
 -(void)drawRect:(CGRect)dirtyRect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -24,10 +44,11 @@
     
     //stroke should be 10 points
     CGContextSetLineWidth(ctx, 10);
+    [[self circleColor]setStroke];
     
     //make the color of the line gray
     //CGContextSetRGBStrokeColor(ctx, 0.6, 0.6, 0.6, 1.0);
-    [[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1]setStroke];
+    //[[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1]setStroke];
     
     //add a shape to the contect. This does not draw the shape
 //    CGContextAddArc(ctx, center.x, center.y, maxRadius, 0.0, M_PI * 2.0, YES);
@@ -87,6 +108,8 @@
     {
         //all hyposisViews start witha  claear background
         [self setBackgroundColor:[UIColor clearColor]];
+        [self setCircleColor:[UIColor lightGrayColor]];
+        
         
     }
     return self;
